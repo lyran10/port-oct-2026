@@ -1,0 +1,9 @@
+{
+  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "entry": ["scripts/*.mjs"],
+  "project": ["src/**/*.{ts,tsx,css}", "scripts/*.mjs"],
+  "ignoreFiles": [
+    "src/components/rotating-text.tsx",
+    "src/components/ui/**"
+  ]
+}

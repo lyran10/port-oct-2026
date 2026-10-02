@@ -66,4 +66,4 @@ function ButtonAnchor({
   )
 }
 
-export { Button, ButtonAnchor, buttonVariants }
+export { Button, ButtonAnchor }

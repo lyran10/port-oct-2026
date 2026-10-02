@@ -1,13 +1,6 @@
 import * as React from 'react'
 
-type Theme = 'dark' | 'light'
-
-type ThemeProviderState = {
-  theme: Theme
-  toggleTheme: () => void
-}
-
-const ThemeContext = React.createContext<ThemeProviderState | undefined>(undefined)
+import { type Theme, ThemeContext } from '@/hooks/theme-context'
 
 const STORAGE_KEY = 'portfolio-theme'
 
@@ -34,10 +27,4 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const value = React.useMemo(() => ({ theme, toggleTheme }), [theme, toggleTheme])
 
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
-}
-
-export function useTheme() {
-  const context = React.useContext(ThemeContext)
-  if (!context) throw new Error('useTheme must be used within a ThemeProvider')
-  return context
 }
