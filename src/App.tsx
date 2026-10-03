@@ -2,6 +2,7 @@ import { BackgroundDecor } from '@/components/background-decor'
 import { BackToTop } from '@/components/back-to-top'
 import { Footer } from '@/components/footer'
 import { Navbar } from '@/components/navbar'
+import { PortfolioBoundary } from '@/components/portfolio-boundary'
 import { ScrollProgress } from '@/components/scroll-progress'
 import { About } from '@/components/sections/about'
 import { Contact } from '@/components/sections/contact'
@@ -15,21 +16,23 @@ function App() {
   return (
     <div className="relative min-h-screen">
       <BackgroundDecor />
-      <ScrollProgress />
-      <Navbar />
+      <PortfolioBoundary>
+        <ScrollProgress />
+        <Navbar />
 
-      <main>
-        <Hero />
-        <About />
-        <Experience />
-        <Skills />
-        <Projects />
-        <Education />
-        <Contact />
-      </main>
+        <main>
+          <Hero />
+          <About />
+          <Experience />
+          <Skills />
+          <Projects />
+          <Education />
+          <Contact />
+        </main>
 
-      <Footer />
-      <BackToTop />
+        <Footer />
+        <BackToTop />
+      </PortfolioBoundary>
     </div>
   )
 }

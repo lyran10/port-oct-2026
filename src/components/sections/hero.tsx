@@ -1,22 +1,24 @@
 import { motion } from 'framer-motion'
 import { ArrowDown, FileDown } from 'lucide-react'
-import { FaGithub, FaInstagram, FaLinkedin } from 'react-icons/fa'
-import { SiLeetcode } from 'react-icons/si'
 
 import { Button, ButtonAnchor } from '@/components/ui/button'
 // import { RotatingText } from '@/components/rotating-text'
-import { profile } from '@/data/resume'
+import { usePortfolio } from '@/hooks/use-portfolio'
+import { getSocialLinks } from '@/lib/social-links'
+import type { Profile } from '@/types/portfolio'
 // import portrait from '@/assets/portrait.png'
 // import portrait from '@/assets/AI_photo.png'
 
-const PROFILE_LINES: { key: string; value: string | string[] | boolean }[] = [
-  { key: 'name', value: profile.name },
-  { key: 'role', value: profile.role },
-  { key: 'location', value: profile.location },
-  { key: 'stack', value: ['React', 'TypeScript', 'Node.js'] },
-  // { key: 'focus', value: ['Scalable UI', 'Performance', 'DX'] },
-  { key: 'openToWork', value: true },
-]
+function getProfileLines(profile: Profile): { key: string; value: string | string[] | boolean }[] {
+  return [
+    { key: 'name', value: profile.name },
+    { key: 'role', value: profile.role },
+    { key: 'location', value: profile.location },
+    { key: 'stack', value: ['React', 'TypeScript', 'Node.js'] },
+    // { key: 'focus', value: ['Scalable UI', 'Performance', 'DX'] },
+    { key: 'openToWork', value: true },
+  ]
+}
 
 function CodeValue({ value }: Readonly<{ value: string | string[] | boolean }>) {
   if (typeof value === 'boolean') return <span className="text-amber-500">{String(value)}</span>
@@ -37,14 +39,10 @@ function CodeValue({ value }: Readonly<{ value: string | string[] | boolean }>) 
 
 // const ROLES = ['React Developer', 'TypeScript Engineer', 'Frontend Engineer', 'Full-Stack Builder']
 
-const SOCIAL_LINKS = [
-  { id: 'GitHub', href: profile.social.github, icon: FaGithub },
-  { id: 'LinkedIn', href: profile.social.linkedin, icon: FaLinkedin },
-  { id: 'LeetCode', href: profile.social.leetcode, icon: SiLeetcode },
-  { id: 'Instagram', href: profile.social.instagram, icon: FaInstagram },
-]
-
 export function Hero() {
+  const { profile } = usePortfolio()
+  const PROFILE_LINES = getProfileLines(profile)
+  const SOCIAL_LINKS = getSocialLinks(profile.social)
   const scrollTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
 
   return (

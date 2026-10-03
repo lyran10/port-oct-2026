@@ -4,9 +4,10 @@ import { Reveal } from '@/components/reveal'
 import { SectionHeading } from '@/components/section-heading'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
-import { experience } from '@/data/resume'
+import { usePortfolio } from '@/hooks/use-portfolio'
 
 export function Experience() {
+  const { experience } = usePortfolio()
   return (
     <section id="experience" className="py-24 sm:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -18,7 +19,7 @@ export function Experience() {
 
         <ol className="relative mt-12 space-y-10 border-s border-border/70 ps-8 sm:ps-10">
           {experience.map((job, index) => (
-            <Reveal key={job.company} delay={index * 0.1} as="div">
+            <Reveal key={job.id} delay={index * 0.1} as="div">
               <li className="relative">
                 <span className="absolute top-1 -start-[calc(2rem+9px)] flex size-[18px] items-center justify-center rounded-full bg-linear-to-br from-primary to-accent ring-4 ring-background sm:-start-[calc(2.5rem+9px)]">
                   <Briefcase className="size-2.5 text-primary-foreground" />

@@ -1,21 +1,16 @@
 import { Mail, Phone } from 'lucide-react'
-import { FaGithub, FaInstagram, FaLinkedin } from 'react-icons/fa'
-import { SiLeetcode } from 'react-icons/si'
 
+import { ContactForm } from '@/components/contact-form'
 import { Reveal } from '@/components/reveal'
 import { SectionHeading } from '@/components/section-heading'
-import { ButtonAnchor } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
-import { profile } from '@/data/resume'
-
-const SOCIAL_LINKS = [
-  { id: 'GitHub', href: profile.social.github, icon: FaGithub },
-  { id: 'LinkedIn', href: profile.social.linkedin, icon: FaLinkedin },
-  { id: 'LeetCode', href: profile.social.leetcode, icon: SiLeetcode },
-  { id: 'Instagram', href: profile.social.instagram, icon: FaInstagram },
-]
+import { usePortfolio } from '@/hooks/use-portfolio'
+import { getSocialLinks } from '@/lib/social-links'
 
 export function Contact() {
+  const { profile } = usePortfolio()
+  const SOCIAL_LINKS = getSocialLinks(profile.social)
+  const mailto = `mailto:${profile.emails.join(',')}`
   return (
     <section id="contact" className="py-24 sm:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -36,11 +31,11 @@ export function Contact() {
                 <div className="flex flex-col gap-1">
                   <p className="text-sm text-muted-foreground">Email</p>
                   <a
-                    href={`mailto:${profile.email}`}
+                    href={mailto}
                     className="font-medium break-all hover:text-primary hover:underline"
                   >
                       {
-                        profile.email.map((email) => (
+                        profile.emails.map((email) => (
                           <p key={email}>
                             {email}
                           </p>
@@ -66,9 +61,13 @@ export function Contact() {
             </CardContent>
 
             <div className="flex flex-col items-center gap-5 border-t border-border/60 px-6 pt-6">
-              <ButtonAnchor href={`mailto:${profile.email}`} size="lg">
-                Say hello
-              </ButtonAnchor>
+              <ContactForm />
+              <p className="text-sm text-muted-foreground">
+                Prefer email?{' '}
+                <a href={mailto} className="font-medium text-primary hover:underline">
+                  Write to me directly
+                </a>
+              </p>
 
               <div className="flex items-center gap-3">
                 {SOCIAL_LINKS.map(({ id, href, icon: Icon }) => (

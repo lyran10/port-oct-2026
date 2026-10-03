@@ -5,9 +5,10 @@ import { Reveal } from '@/components/reveal'
 import { SectionHeading } from '@/components/section-heading'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
-import { projects } from '@/data/resume'
+import { usePortfolio } from '@/hooks/use-portfolio'
 
 export function Projects() {
+  const { projects } = usePortfolio()
   return (
     <section id="projects" className="py-24 sm:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -19,7 +20,7 @@ export function Projects() {
 
         <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
           {projects.map((project, index) => (
-            <Reveal key={project.title} delay={(index % 2) * 0.1}>
+            <Reveal key={project.id} delay={(index % 2) * 0.1}>
               <Card className="group h-full transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg hover:shadow-primary/5">
                 <CardHeader>
                   <div className="flex items-start justify-between gap-3">

@@ -16,6 +16,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.104.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^13.2.0",

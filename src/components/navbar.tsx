@@ -5,7 +5,7 @@ import { Menu, X } from 'lucide-react'
 import { ButtonAnchor } from '@/components/ui/button'
 import { ModeToggle } from '@/components/mode-toggle'
 import { useActiveSection } from '@/hooks/use-active-section'
-import { profile } from '@/data/resume'
+import { usePortfolio } from '@/hooks/use-portfolio'
 import { cn } from '@/lib/utils'
 
 const NAV_LINKS = [
@@ -19,6 +19,7 @@ const NAV_LINKS = [
 ]
 
 export function Navbar() {
+  const { profile } = usePortfolio()
   const [open, setOpen] = React.useState(false)
   const active = useActiveSection(NAV_LINKS.map((link) => link.id))
 

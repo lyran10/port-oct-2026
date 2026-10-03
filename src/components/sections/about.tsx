@@ -3,7 +3,7 @@ import { Code2, Gauge, Lightbulb, Plug } from 'lucide-react'
 import { Reveal } from '@/components/reveal'
 import { SectionHeading } from '@/components/section-heading'
 import { Card, CardContent } from '@/components/ui/card'
-import { profile } from '@/data/resume'
+import { usePortfolio } from '@/hooks/use-portfolio'
 
 const FOCUS_AREAS = [
   {
@@ -29,6 +29,7 @@ const FOCUS_AREAS = [
 ]
 
 export function About() {
+  const { profile } = usePortfolio()
   return (
     <section id="about" className="py-24 sm:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">

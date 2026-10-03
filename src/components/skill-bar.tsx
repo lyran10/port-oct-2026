@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 
-import type { Skill } from '@/data/resume'
+import type { Skill } from '@/types/portfolio'
 
 export function SkillBar({ skill, delay = 0 }: { skill: Skill; delay?: number }) {
   return (

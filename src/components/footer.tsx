@@ -1,6 +1,7 @@
-import { profile } from '@/data/resume'
+import { usePortfolio } from '@/hooks/use-portfolio'
 
 export function Footer() {
+  const { profile } = usePortfolio()
   return (
     <footer className="border-t border-border/60 py-8">
       <div className="flex justify-center items-center">
